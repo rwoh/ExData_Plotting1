@@ -18,12 +18,13 @@ Do.it.the.fast.way <- TRUE
 
 if(Do.it.the.fast.way) {
         data <- read.table(
-                pipe('head  -1 "household_power_consumption.txt" ; grep  -e "^[12]/2/2007"  "household_power_consumption.txt"'), 
+                pipe('head  -1 "household_power_consumption.txt" ; grep  -e "^[12]/2/2007" "household_power_consumption.txt"'), 
                 sep = ";", 
                 na.strings = '?', 
                 stringsAsFactors = FALSE, 
                 header=TRUE,
-                colClasses = c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric")
+                colClasses = 
+                        c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric")
                 
                 
         )
@@ -63,7 +64,8 @@ with(data, plot(Date.time, Global_active_power, xlab = "", ylab="Global Active P
 with(data, plot(Date.time, Sub_metering_1, xlab = "", ylab="Energy sub metering" , type = "l"))
 with(data, lines(Date.time, Sub_metering_2, col="red"))
 with(data, lines(Date.time, Sub_metering_3, col="blue"))
-legend("topright", c("Sub_metering_2", "Sub_metering_2", "Sub_metering_3" ), col = c("black", "red", "blue"),lty = c(1,1,1), bty = "n")
+legend("topright", c("Sub_metering_2", "Sub_metering_2", "Sub_metering_3" ), 
+       col = c("black", "red", "blue"),lty = c(1,1,1), bty = "n")
 
 with(data, plot(Date.time, Voltage, xlab = "datetime", ylab="Voltage" , type = "l"))
 

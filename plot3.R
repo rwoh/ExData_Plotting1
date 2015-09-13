@@ -18,12 +18,13 @@ Do.it.the.fast.way <- TRUE
 
 if(Do.it.the.fast.way) {
         data <- read.table(
-                pipe('head  -1 "household_power_consumption.txt" ; grep  -e "^[12]/2/2007"  "household_power_consumption.txt"'), 
+                pipe('head  -1 "household_power_consumption.txt" ; grep  -e "^[12]/2/2007" "household_power_consumption.txt"'), 
                 sep = ";", 
                 na.strings = '?', 
                 stringsAsFactors = FALSE, 
                 header=TRUE,
-                colClasses = c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric")
+                colClasses = 
+                        c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric")
                 
                 
         )
@@ -40,7 +41,9 @@ if(Do.it.the.fast.way) {
                 quote = "", 
                 header=TRUE,
                 nrows = 2075260,
-                colClasses = c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"))
+                colClasses = 
+                        c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric")
+                )
         
         # Parse the dates
         data$Date.time <- dmy_hms(paste(data$Date ,data$Time, sep = " "))
@@ -50,7 +53,7 @@ if(Do.it.the.fast.way) {
                 filter(Date.time >= dmy("01/02/2007") 
                        & Date.time < dmy("03/02/2007")
                 )
-        
+
 }
 
 # STEP 2: Draw the plot:
